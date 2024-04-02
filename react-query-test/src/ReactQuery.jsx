@@ -1,6 +1,7 @@
 // import { useQuery } from "react-query";
 // import axios from "axios";
 import { useProductName } from "./hooks/useProductName";
+import { Link } from "react-router-dom";
 
 // const fetchProducts = () => {
 //   return axios.get("https://api.sampleapis.com/wines/reds");
@@ -56,7 +57,13 @@ export const ReactQuery = () => {
               {product.wine} / {product.winery}
             </li>
           ))} */}
-        {data && data.map((productName) => <li key={productName}>{productName}</li>)}
+        {/* {data && data.map((productName) => <li key={productName}>{productName}</li>)} */}
+        {data &&
+          data.map((product) => (
+            <li key={product.id}>
+              <Link to={`/react-query/${product.id}`}>{product.wine}</Link>
+            </li>
+          ))}
       </ul>
     </>
   );

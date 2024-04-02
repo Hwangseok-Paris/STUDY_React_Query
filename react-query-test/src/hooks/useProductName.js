@@ -10,9 +10,12 @@ export const useProductName = (onSuccess, onError) => {
   return useQuery("get-product", fetchProducts, {
     onSuccess: onSuccess,
     onError: onError,
+    // select: (data) => {
+    //   const productName = data.data?.map((p) => p.wine).slice(0, 9);
+    //   return productName;
+    // },
     select: (data) => {
-      const productName = data.data?.map((p) => p.wine).slice(0, 9);
-      return productName;
+      return data.data.slice(0, 9);
     },
   });
 };
