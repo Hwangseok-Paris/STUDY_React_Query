@@ -7,6 +7,8 @@ export const Header = () => {
       <Link to="/axios-query">Axios Query</Link>
       <Link to="/react-query">React Query</Link>
       <Link to="/parallel-query">Parallel Query</Link>
+      <Link to="/dynamic-parallel-qureis">Dynamic Parallel Queries</Link>
+      <Link to="/depent-query">Depent Query</Link>
     </nav>
   );
 };
