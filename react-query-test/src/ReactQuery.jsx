@@ -1,6 +1,7 @@
 // import { useQuery } from "react-query";
 // import axios from "axios";
-import { useProductName } from "./hooks/useProductName";
+import {useState} from 'react'
+import { useProductName, useAddProduct } from "./hooks/useProductName";
 import { Link } from "react-router-dom";
 
 // const fetchProducts = () => {
@@ -8,6 +9,12 @@ import { Link } from "react-router-dom";
 // };
 
 export const ReactQuery = () => {
+  
+  const [name, setName] = useState("")
+  const [price, setPrice] = useState(0) 
+  
+  const {mutate: addProduct} = useAddProduct()
+
   const onSuccess = (data) => {
     console.log("데이터 가져오기 후 사이드 이펙트 수행", data);
   };
@@ -34,7 +41,7 @@ export const ReactQuery = () => {
   //   // onError: onError,
   // });
 
-  console.log({ isLoading, isFetching });
+  // console.log({ isLoading, isFetching });
   if (isLoading) return <>Loading...</>;
   if (isError) return <>{error.message}</>;
 
@@ -42,9 +49,36 @@ export const ReactQuery = () => {
     return <div className="text-[red]">{data.data?.message}</div>;
   }
 
+
+
+  const handleCreate =() => {
+    console.log({name, price})
+    const data = {name, price}
+    addProduct(data)
+  }
+
   return (
     <>
       <div className="text-4xl">React Query</div>
+
+      <div className="space-x-2">
+      <input
+        className="border"
+        type="text"
+        value={name}
+        onChange={(e)=> setName(e.target.value)}
+      />
+      <input
+        className="border"
+        type="number"
+        value={price}
+        onChange={(e)=> setPrice(e.target.value)}
+      />
+      <button className="border" onClick={handleCreate}>
+        create
+      </button>
+      
+      </div>
 
       {/* <button onClick={refetch} className="py-2 px-4 border bg-slate-100 rounded-md text-[black]">
         fetch data
