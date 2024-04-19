@@ -13,6 +13,8 @@ export const useProductId = (productId) => {
    * https://mycodings.fly.dev/blog/2023-09-24-react-query-usequeryclient-initialdata-using-cache
    */
 
+  // test??
+
   const queryClient = useQueryClient();
   return useQuery(["product-id", productId], () => fetchProductDetails(productId), {
     initialData: () => {
